@@ -73,7 +73,7 @@ const clientsRow2 = [
   { src: "/icons/zvook.png", alt: "Звук", w: 134, h: 40 },
 ];
 
-const PHOTO_FACTOR = 0.5;
+const PHOTO_FACTOR = 0.9;
 const HEADING_FACTOR = 0.7;
 const STATS_FACTOR = 0.85;
 
@@ -86,6 +86,13 @@ export default function Hero() {
     let ticking = false;
     const update = () => {
       ticking = false;
+      const isDesktop = window.innerWidth >= 1280;
+      if (!isDesktop) {
+        if (photoRef.current) photoRef.current.style.transform = "";
+        if (headingRef.current) headingRef.current.style.transform = "";
+        if (statsRef.current) statsRef.current.style.transform = "";
+        return;
+      }
       const Y = Math.max(0, window.scrollY);
       const photoOffset = Y * (1 - PHOTO_FACTOR);
       const headingOffset = Y * (1 - HEADING_FACTOR);
@@ -108,32 +115,38 @@ export default function Hero() {
     };
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   return (
     <section className="section_hero">
-      <h1 ref={headingRef} className="hero_heading">
-        Закрываем дизайнерские вакансии<br />за 2–4 недели
-      </h1>
+      <div className="hero_main">
+        <h1 ref={headingRef} className="hero_heading">
+          Закрываем дизайнерские вакансии<br />за 2–4 недели
+        </h1>
 
-      <div ref={photoRef} className="hero_photo">
-        <Image
-          src="/img/Hero.jpg"
-          alt=""
-          width={502}
-          height={630}
-          priority
-        />
-      </div>
+        <div ref={photoRef} className="hero_photo">
+          <Image
+            src="/img/Hero.jpg"
+            alt=""
+            width={502}
+            height={630}
+            priority
+          />
+        </div>
 
-      <div ref={statsRef} className="hero_stats">
-        <p className="hero_stats-label">Конверсия в закрытие</p>
-        <div className="hero_stats-big">
-          <p className="hero_stats-value">
-            90<span className="hero_stats-value-pct">%</span>
-          </p>
-          <a href="#" className="hero_stats-proof">Пруф. дашборд с позициями</a>
+        <div ref={statsRef} className="hero_stats">
+          <p className="hero_stats-label">Конверсия в закрытие</p>
+          <div className="hero_stats-big">
+            <p className="hero_stats-value">
+              90<span className="hero_stats-value-pct">%</span>
+            </p>
+            <a href="#" className="hero_stats-proof">Пруф. дашборд с позициями</a>
+          </div>
         </div>
       </div>
 

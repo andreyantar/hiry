@@ -99,7 +99,8 @@ export default function Header() {
             rel="noopener noreferrer"
           >
             <span>Мы в</span>
-            <TelegramIcon className="site-header_tg-icon" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/img/Telegram_logo.png" alt="" className="site-header_tg-icon" />
           </a>
         </nav>
         <a
@@ -109,27 +110,10 @@ export default function Header() {
           rel="noopener noreferrer"
           aria-label="Telegram-канал Хайри"
         >
-          <TelegramIcon className="site-header_tg-icon" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/Telegram_logo.png" alt="" className="site-header_tg-icon" />
         </a>
       </div>
     </header>
-  );
-}
-
-function TelegramIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="12" fill="#229ED9" />
-      <path
-        d="M5.4 11.6 17.2 7c.8-.3 1.5.2 1.3 1.4l-2 9.4c-.2.9-.7 1.1-1.4.7l-3.9-2.9-1.9 1.8c-.2.2-.4.4-.8.4l.3-4 7.4-6.7c.3-.3-.1-.4-.5-.2l-9.1 5.8L2.7 12c-.8-.3-.8-.8.2-1.2Z"
-        fill="#fff"
-      />
-    </svg>
   );
 }

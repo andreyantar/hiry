@@ -1,4 +1,5 @@
 import Cases from "@/components/Cases";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HowWeWork from "@/components/HowWeWork";
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Cases />
       <HowWeWork />
+      <Footer />
     </>
   );
 }

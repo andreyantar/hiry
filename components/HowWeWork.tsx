@@ -1,18 +1,57 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function HowWeWork() {
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    const row = rowRef.current;
+    if (!gallery || !row) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set(row, { xPercent: -50, yPercent: -50, rotation: -1.38 });
+      const distance = () => window.innerWidth * 0.25;
+      gsap.fromTo(
+        row,
+        { x: () => distance() },
+        {
+          x: () => -distance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: gallery,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    }, gallery);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="how" className="section_how">
       <div className="how_top">
         <h2 className="how_title">КАК МЫ ЭТО ДЕЛАЕМ?</h2>
-        <div className="how_gallery">
-          <div className="how_gallery-row">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="how_gallery-img how_gallery-img--01" src="/icons/made_01.jpg" alt="" loading="lazy" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="how_gallery-img how_gallery-img--02" src="/icons/made_02.jpg" alt="" loading="lazy" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="how_gallery-img how_gallery-img--03" src="/icons/made_03.jpg" alt="" loading="lazy" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="how_gallery-img how_gallery-img--04" src="/icons/made_04.jpg" alt="" loading="lazy" />
+        <div className="how_gallery" ref={galleryRef}>
+          <div className="how_gallery-row" ref={rowRef}>
+            {Array.from({ length: 3 }).flatMap((_, i) => [
+              /* eslint-disable @next/next/no-img-element */
+              <img key={`a-${i}`} className="how_gallery-img how_gallery-img--01" src="/img/made_01.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
+              <img key={`b-${i}`} className="how_gallery-img how_gallery-img--02" src="/img/made_02.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
+              <img key={`c-${i}`} className="how_gallery-img how_gallery-img--03" src="/img/made_03.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
+              <img key={`d-${i}`} className="how_gallery-img how_gallery-img--04" src="/img/made_04.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
+              /* eslint-enable @next/next/no-img-element */
+            ])}
           </div>
           <div className="how_gallery-overlay" aria-hidden />
         </div>
