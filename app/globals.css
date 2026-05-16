@@ -310,7 +310,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   letter-spacing: -2px;
 }
 .hero_stats-value-pct {
-  font-size: 1.16em;
+  font-size: 1em;
   margin-left: -0.02em;
 }
 @media (min-width: 768px) { .hero_stats-value { font-size: 140px; letter-spacing: -2.8px; } }
@@ -434,11 +434,13 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   justify-content: center;
   height: 48px;
   position: relative;
+  line-height: 0;
 }
 .hero_client-logo img {
   height: 100%;
   width: auto;
   object-fit: contain;
+  display: block;
 }
 
 .hero_client-cap {
