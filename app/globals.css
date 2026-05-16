@@ -1157,12 +1157,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   }
 }
 
-@media (max-width: 767px) {
-  .how_card--second {
-    flex-direction: column-reverse;
-  }
-}
-
 .how_card {
   display: flex;
   flex-direction: column;
@@ -1231,6 +1225,10 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 }
 .how_card-text--w { color: var(--white); }
 .how_card-text--g { color: var(--gray); }
+
+@media (max-width: 767px) {
+  .how_card.how_card--second { flex-direction: column-reverse; }
+}
 
 /* ====== Section: Footer ====== */
 .section_footer {
