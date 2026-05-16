@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 const LOGO_BIG_W = 295.626;
 const LOGO_BIG_H = 163.234;
@@ -38,15 +39,21 @@ function computeLayout(vw: number): Layout {
 }
 
 export default function Header() {
-  const logoRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  const pathname = usePathname();
+  const isCompact = pathname !== "/";
 
   useEffect(() => {
     let layout = computeLayout(window.innerWidth);
     let ticking = false;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const apply = () => {
       ticking = false;
-      const progress = Math.min(1, Math.max(0, window.scrollY / SHRINK_DISTANCE));
+      // On reduced motion: lock to small/compact state, no scroll-based morph
+      const progress = reduced || isCompact
+        ? 1
+        : Math.min(1, Math.max(0, window.scrollY / SHRINK_DISTANCE));
       const scale = layout.bigScale + (layout.smallScale - layout.bigScale) * progress;
       const x = layout.bigX + (layout.smallX - layout.bigX) * progress;
       const y = layout.bigY + (layout.smallY - layout.bigY) * progress;
@@ -74,12 +81,17 @@ export default function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [isCompact]);
 
   return (
     <header className="site-header">
       <div className="site-header_inner">
-        <div ref={logoRef} className="site-header_logo">
+        <a
+          ref={logoRef}
+          href="/"
+          aria-label="Хайри — на главную"
+          className="site-header_logo"
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/icons/Hiry_Logo.svg"
@@ -87,14 +99,14 @@ export default function Header() {
             width={LOGO_BIG_W}
             height={LOGO_BIG_H}
           />
-        </div>
+        </a>
         <nav className="site-header_nav" aria-label="Основная навигация">
-          <a className="site-header_link" href="#cases">Кейсы</a>
-          <a className="site-header_link" href="#how">Этапы работы</a>
-          <a className="site-header_link" href="#contacts">Контакты</a>
+          <a className="site-header_link" href="/#cases">Кейсы</a>
+          <a className="site-header_link" href="/#how">Этапы работы</a>
+          <a className="site-header_link" href="/#contacts">Контакты</a>
           <a
             className="site-header_link site-header_tg"
-            href="https://t.me/"
+            href="https://t.me/@hiry_agency"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -105,7 +117,7 @@ export default function Header() {
         </nav>
         <a
           className="site-header_tg-mobile"
-          href="https://t.me/"
+          href="https://t.me/@hiry_agency"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Telegram-канал Хайри"

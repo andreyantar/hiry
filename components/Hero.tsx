@@ -3,75 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-type Client = {
-  src: string;
-  alt: string;
-  imgW: number;
-  imgH: number;
-  itemGap: number;
-  captionW: number;
-  captionAlign: "center" | "left";
-  captionLines: string[];
-};
-
-const clientsRow1: Client[] = [
-  {
-    src: "/icons/wildberries.png",
-    alt: "Wildberries",
-    imgW: 216,
-    imgH: 43,
-    itemGap: 15,
-    captionW: 141,
-    captionAlign: "center",
-    captionLines: ["4 дизайнера", "и 1 руководитель"],
-  },
-  {
-    src: "/icons/winline.png",
-    alt: "Winline",
-    imgW: 180,
-    imgH: 43,
-    itemGap: 14,
-    captionW: 180,
-    captionAlign: "center",
-    captionLines: ["Арт-Директор"],
-  },
-  {
-    src: "/icons/vkusvill.png",
-    alt: "ВкусВилл",
-    imgW: 176,
-    imgH: 43,
-    itemGap: 14,
-    captionW: 123,
-    captionAlign: "left",
-    captionLines: ["4 продуктовых и 2 графических"],
-  },
-  {
-    src: "/icons/vk.png",
-    alt: "ВКонтакте",
-    imgW: 240,
-    imgH: 43,
-    itemGap: 13,
-    captionW: 195,
-    captionAlign: "center",
-    captionLines: ["2 продуктовых дизайнера"],
-  },
-  {
-    src: "/icons/samolet.png",
-    alt: "Самолёт",
-    imgW: 176,
-    imgH: 42,
-    itemGap: 14,
-    captionW: 176,
-    captionAlign: "center",
-    captionLines: ["25 дизайнеров"],
-  },
-];
-
-const clientsRow2 = [
-  { src: "/icons/x5.png", alt: "X5 Group", w: 171, h: 52 },
-  { src: "/icons/lavka.png", alt: "Яндекс Лавка", w: 252, h: 39 },
-  { src: "/icons/zvook.png", alt: "Звук", w: 134, h: 40 },
-];
+/* Clients data and layout — moved to JSX (per-item asymmetric paddings, complex logo composition). See render in section. */
 
 const PHOTO_FACTOR = 0.9;
 const HEADING_FACTOR = 0.7;
@@ -84,10 +16,11 @@ export default function Hero() {
 
   useEffect(() => {
     let ticking = false;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const update = () => {
       ticking = false;
       const isDesktop = window.innerWidth >= 1280;
-      if (!isDesktop) {
+      if (!isDesktop || reduced) {
         if (photoRef.current) photoRef.current.style.transform = "";
         if (headingRef.current) headingRef.current.style.transform = "";
         if (statsRef.current) statsRef.current.style.transform = "";
@@ -160,58 +93,92 @@ export default function Hero() {
         </div>
 
         <div className="hero_clients-content">
-          <div className="hero_clients-row">
-            {clientsRow1.map((c) => (
-              <div
-                key={c.alt}
-                className="hero_client"
-                style={{
-                  width: `calc(${c.imgW} * var(--u))`,
-                  gap: `calc(${c.itemGap} * var(--u))`,
-                }}
-              >
-                <div
-                  className="hero_client-logo"
-                  style={{ height: `calc(${c.imgH} * var(--u))` }}
-                >
-                  <Image
-                    src={c.src}
-                    alt={c.alt}
-                    width={c.imgW}
-                    height={c.imgH}
-                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
-                  />
-                </div>
-                <div
-                  className="hero_client-caption"
-                  style={{
-                    width: `calc(${c.captionW} * var(--u))`,
-                    textAlign: c.captionAlign,
-                  }}
-                >
-                  {c.captionLines.map((line, i) => (
-                    <p key={i}>{line}</p>
-                  ))}
-                </div>
+          {/* Row 1: 5 clients (items-start) */}
+          <div className="hero_clients-row1">
+            <div className="hero_client hero_client--samolet">
+              <div className="hero_client-logo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/samolet_v2.png" alt="Самолёт" />
               </div>
-            ))}
+              <p className="hero_client-cap">25 дизайнеров</p>
+            </div>
+
+            <div className="hero_client hero_client--vk">
+              <div className="hero_client-logo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/vk_square.png" alt="ВКонтакте" />
+              </div>
+              <p className="hero_client-cap">
+                2 продуктовых<br />дизайнера
+              </p>
+            </div>
+
+            <div className="hero_client hero_client--wb">
+              <div className="hero_client-logo hero_client-logo--wb">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/wb_pink_9.svg" alt="" className="hero_client-logo-wb-a" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/wb_pink_10.svg" alt="" className="hero_client-logo-wb-b" />
+              </div>
+              <p className="hero_client-cap">
+                4 дизайнера<br />и 1 руководитель
+              </p>
+            </div>
+
+            <div className="hero_client hero_client--winline">
+              <div className="hero_client-logo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/winline_v2.png" alt="Winline" />
+              </div>
+              <p className="hero_client-cap">Арт-Директор</p>
+            </div>
+
+            <div className="hero_client hero_client--zvuk">
+              <div className="hero_client-logo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/zvuk_v2.png" alt="Звук" />
+              </div>
+              <p className="hero_client-cap">NDA</p>
+            </div>
           </div>
 
-          <div className="hero_clients-row hero_clients-row-secondary">
-            {clientsRow2.map((c) => (
-              <Image
-                key={c.alt}
-                src={c.src}
-                alt={c.alt}
-                width={c.w}
-                height={c.h}
-                style={{
-                  width: `calc(${c.w} * var(--u))`,
-                  height: `calc(${c.h} * var(--u))`,
-                  objectFit: "contain",
-                }}
-              />
-            ))}
+          {/* Row 2: 4 clients (items-center) */}
+          <div className="hero_clients-row2">
+            <div className="hero_client hero_client--x5">
+              <div className="hero_client-logo hero_client-logo--x5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/x5_group_v2.png" alt="X5 Group" />
+              </div>
+              <p className="hero_client-cap">NDA</p>
+            </div>
+
+            <div className="hero_client hero_client--pragmatica">
+              <div className="hero_client-logo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/pragmatica.png" alt="Pragmatica" />
+              </div>
+              <p className="hero_client-cap">NDA</p>
+            </div>
+
+            <div className="hero_client hero_client--lavka">
+              <div className="hero_client-logo hero_client-logo--lavka">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/lavka_heart.svg" alt="" className="hero_client-logo-lavka-heart" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/lavka_text.svg" alt="" className="hero_client-logo-lavka-text" />
+              </div>
+              <p className="hero_client-cap">NDA</p>
+            </div>
+
+            <div className="hero_client hero_client--vkusvill">
+              <div className="hero_client-logo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/vkusvill_v2.png" alt="ВкусВилл" />
+              </div>
+              <p className="hero_client-cap">
+                4 продуктовых<br />и 2 графических
+              </p>
+            </div>
           </div>
         </div>
       </div>

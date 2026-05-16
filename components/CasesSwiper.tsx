@@ -28,7 +28,7 @@ export default function CasesSwiper({ posts }: Props) {
       }}
       slidesPerView={1}
     >
-      {posts.map((post) => {
+      {posts.map((post, index) => {
         const cardStyle: CSSProperties = {
           ["--card-gap" as string]: cardGapByType[post.mediaType],
           ["--content-gap" as string]: contentGapByType[post.mediaType],
@@ -54,7 +54,7 @@ export default function CasesSwiper({ posts }: Props) {
                   ))}
                 </div>
                 <a
-                  className="cases_btn"
+                  className={`cases_btn${index === 0 ? " cases_btn--primary" : ""}`}
                   href={post.url}
                   target="_blank"
                   rel="noopener noreferrer"

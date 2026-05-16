@@ -6,7 +6,7 @@ export default async function Cases() {
   const data = posts.length > 0 ? posts : fallbackCasePosts;
 
   return (
-    <section id="cases" className="section_cases">
+    <section id="cases" className="section_cases" data-reveal>
       <div className="cases_inner">
         <h2 className="cases_title">КЕЙСЫ</h2>
         <CasesSwiper posts={data} />

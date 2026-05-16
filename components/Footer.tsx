@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer id="contacts" className="section_footer">
+    <footer id="contacts" className="section_footer" data-reveal>
       <div className="footer_main">
         <div className="footer_avatar-block">
           <div className="footer_avatar">
@@ -20,11 +20,11 @@ export default function Footer() {
           </h2>
 
           <div className="footer_ctas">
-            <a href="#" className="footer_link footer_link--cta1">
-              <span>Нужны дизайнеры</span>
+            <a href="#" className="footer_btn footer_btn--primary">
+              Нужны дизайнеры
             </a>
-            <a href="#" className="footer_link footer_link--cta2">
-              <span>Я дизайнер, ищу работу</span>
+            <a href="#" className="footer_btn footer_btn--ghost">
+              Дизайнер, ищу работу
             </a>
           </div>
         </div>

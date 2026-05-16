@@ -39,7 +39,7 @@ export default function HowWeWork() {
   }, []);
 
   return (
-    <section id="how" className="section_how">
+    <section id="how" className="section_how" data-reveal>
       <div className="how_top">
         <h2 className="how_title">КАК МЫ ЭТО ДЕЛАЕМ?</h2>
         <div className="how_gallery" ref={galleryRef}>
