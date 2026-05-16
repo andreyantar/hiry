@@ -463,8 +463,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 .hero_client--x5 .hero_client-logo--x5 { transform: scaleY(-1); }
 .hero_client--pragmatica .hero_client-logo { width: 207px; height: 23px; }
 .hero_client--lavka .hero_client-logo { width: 149px; height: 41px; }
-.hero_client--lavka .hero_client-logo-lavka-heart { position: absolute; top: 0; left: 0; width: 41px; height: 41px; }
-.hero_client--lavka .hero_client-logo-lavka-text { position: absolute; top: 5.15px; left: 46px; width: 103px; height: 30px; }
 .hero_client--vkusvill .hero_client-logo { width: 176px; height: 22px; }
 
 /* ====== Tablet 768-1279: 2-column grid ====== */
@@ -617,23 +615,14 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
     padding: calc(13 * var(--u)) calc(71 * var(--u)) calc(20 * var(--u));
     gap: calc(21 * var(--u));
   }
-  .hero_client--lavka .hero_client-logo--lavka {
+  .hero_client--lavka .hero_client-logo {
     width: calc(149 * var(--u));
     height: calc(41 * var(--u));
   }
-  .hero_client-logo-lavka-heart {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(41 * var(--u));
-    height: calc(41 * var(--u));
-  }
-  .hero_client-logo-lavka-text {
-    position: absolute;
-    top: calc(5.15 * var(--u));
-    left: calc(46 * var(--u));
-    width: calc(103 * var(--u));
-    height: calc(30 * var(--u));
+  .hero_client--lavka .hero_client-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   .hero_client--lavka .hero_client-cap {
     line-height: calc(17.4 * var(--u));

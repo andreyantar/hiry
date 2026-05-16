@@ -159,11 +159,9 @@ export default function Hero() {
             </div>
 
             <div className="hero_client hero_client--lavka">
-              <div className="hero_client-logo hero_client-logo--lavka">
+              <div className="hero_client-logo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/lavka_heart.png" alt="" className="hero_client-logo-lavka-heart" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/lavka_text.svg" alt="" className="hero_client-logo-lavka-text" />
+                <img src="/icons/lavka_mark.png" alt="Яндекс Лавка" />
               </div>
               <p className="hero_client-cap">NDA</p>
             </div>
