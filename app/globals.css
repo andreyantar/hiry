@@ -963,17 +963,16 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 
 .how_gallery {
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 220px;
   overflow: hidden;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 @media (min-width: 768px) { .how_gallery { height: 320px; } }
 @media (min-width: 1280px) {
   .how_gallery {
-    width: 100vw;
     height: calc(409 * var(--u));
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
   }
 }
 
@@ -1029,6 +1028,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   inset: 0;
   pointer-events: none;
   background:
+    linear-gradient(to right, rgb(13, 11, 20) 0%, rgba(13, 11, 20, 0) 6%, rgba(13, 11, 20, 0) 94%, rgb(13, 11, 20) 100%),
     linear-gradient(-8.55deg, rgb(13, 11, 20) 8%, rgba(13, 11, 20, 0) 56%),
     linear-gradient(14.77deg, rgb(13, 11, 20) 3%, rgba(13, 11, 20, 0) 46%);
 }
