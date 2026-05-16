@@ -272,7 +272,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   color: var(--limon);
   will-change: transform;
 }
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   .hero_stats {
     position: absolute;
     right: 0;
