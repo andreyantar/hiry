@@ -282,6 +282,9 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
     z-index: 3;
   }
 }
+@media (max-width: 519px) {
+  .hero_stats { margin-right: 1rem; }
+}
 @media (min-width: 1280px) {
   .hero_stats {
     position: absolute;
