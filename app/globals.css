@@ -1042,7 +1042,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(to right, rgb(13, 11, 20) 0%, rgba(13, 11, 20, 0) 6%, rgba(13, 11, 20, 0) 94%, rgb(13, 11, 20) 100%),
     linear-gradient(-8.55deg, rgb(13, 11, 20) 8%, rgba(13, 11, 20, 0) 56%),
     linear-gradient(14.77deg, rgb(13, 11, 20) 3%, rgba(13, 11, 20, 0) 46%);
 }
