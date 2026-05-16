@@ -98,7 +98,7 @@ export default function Hero() {
             <div className="hero_client hero_client--samolet">
               <div className="hero_client-logo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/samolet_v2.png" alt="Самолёт" />
+                <img src="/icons/samolet.png" alt="Самолёт" />
               </div>
               <p className="hero_client-cap">25 дизайнеров</p>
             </div>
@@ -106,7 +106,7 @@ export default function Hero() {
             <div className="hero_client hero_client--vk">
               <div className="hero_client-logo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/vk_square.png" alt="ВКонтакте" />
+                <img src="/icons/vk_square.svg" alt="ВКонтакте" />
               </div>
               <p className="hero_client-cap">
                 2 продуктовых<br />дизайнера
@@ -114,11 +114,9 @@ export default function Hero() {
             </div>
 
             <div className="hero_client hero_client--wb">
-              <div className="hero_client-logo hero_client-logo--wb">
+              <div className="hero_client-logo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/wb_pink_9.svg" alt="" className="hero_client-logo-wb-a" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/wb_pink_10.svg" alt="" className="hero_client-logo-wb-b" />
+                <img src="/icons/wb_mark.png" alt="Wildberries" />
               </div>
               <p className="hero_client-cap">
                 4 дизайнера<br />и 1 руководитель
@@ -128,7 +126,7 @@ export default function Hero() {
             <div className="hero_client hero_client--winline">
               <div className="hero_client-logo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/winline_v2.png" alt="Winline" />
+                <img src="/icons/winline.png" alt="Winline" />
               </div>
               <p className="hero_client-cap">Арт-Директор</p>
             </div>
@@ -136,7 +134,7 @@ export default function Hero() {
             <div className="hero_client hero_client--zvuk">
               <div className="hero_client-logo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/zvuk_v2.png" alt="Звук" />
+                <img src="/icons/zvook.png" alt="Звук" />
               </div>
               <p className="hero_client-cap">NDA</p>
             </div>
@@ -147,7 +145,7 @@ export default function Hero() {
             <div className="hero_client hero_client--x5">
               <div className="hero_client-logo hero_client-logo--x5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/x5_group_v2.png" alt="X5 Group" />
+                <img src="/icons/x5_group_v2.svg" alt="X5 Group" />
               </div>
               <p className="hero_client-cap">NDA</p>
             </div>
@@ -163,7 +161,7 @@ export default function Hero() {
             <div className="hero_client hero_client--lavka">
               <div className="hero_client-logo hero_client-logo--lavka">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/lavka_heart.svg" alt="" className="hero_client-logo-lavka-heart" />
+                <img src="/icons/lavka_heart.png" alt="" className="hero_client-logo-lavka-heart" />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/icons/lavka_text.svg" alt="" className="hero_client-logo-lavka-text" />
               </div>
@@ -173,7 +171,7 @@ export default function Hero() {
             <div className="hero_client hero_client--vkusvill">
               <div className="hero_client-logo">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/vkusvill_v2.png" alt="ВкусВилл" />
+                <img src="/icons/vkusvill_mark.png" alt="ВкусВилл" />
               </div>
               <p className="hero_client-cap">
                 4 продуктовых<br />и 2 графических
