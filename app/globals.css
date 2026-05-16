@@ -479,8 +479,8 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 .hero_client--lavka .hero_client-logo { width: 149px; height: 41px; }
 .hero_client--vkusvill .hero_client-logo { width: 176px; height: 22px; }
 
-/* ====== Tablet 768-1279: 2-column grid ====== */
-@media (min-width: 768px) and (max-width: 1279px) {
+/* ====== 480-1279: 2-column grid ====== */
+@media (min-width: 480px) and (max-width: 1279px) {
   .hero_clients-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
