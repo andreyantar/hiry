@@ -411,7 +411,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 48px;
 }
 
 /* Row wrappers become invisible at <1280 — items flow as children of content */
