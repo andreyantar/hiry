@@ -41,15 +41,21 @@ export default function HowWeWork() {
   return (
     <section id="how" className="section_how" data-reveal>
       <div className="how_top">
-        <h2 className="how_title">КАК МЫ ЭТО ДЕЛАЕМ?</h2>
+        <div className="how_title-wrap">
+          <div className="how_title-inner">
+            <div className="how_title-rotor">
+              <h2 className="how_title">КАК МЫ ЭТО ДЕЛАЕМ?</h2>
+            </div>
+          </div>
+        </div>
         <div className="how_gallery" ref={galleryRef}>
           <div className="how_gallery-row" ref={rowRef}>
             {Array.from({ length: 3 }).flatMap((_, i) => [
               /* eslint-disable @next/next/no-img-element */
-              <img key={`a-${i}`} className="how_gallery-img how_gallery-img--01" src="/img/made_01.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
-              <img key={`b-${i}`} className="how_gallery-img how_gallery-img--02" src="/img/made_02.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
-              <img key={`c-${i}`} className="how_gallery-img how_gallery-img--03" src="/img/made_03.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
-              <img key={`d-${i}`} className="how_gallery-img how_gallery-img--04" src="/img/made_04.jpg" alt="" loading="lazy" aria-hidden={i !== 1} />,
+              <img key={`a-${i}`} className="how_gallery-img how_gallery-img--01" src="/img/made_01.jpg" alt="" loading="lazy" aria-hidden={i !== 1 || undefined} />,
+              <img key={`b-${i}`} className="how_gallery-img how_gallery-img--02" src="/img/made_02.jpg" alt="" loading="lazy" aria-hidden={i !== 1 || undefined} />,
+              <img key={`c-${i}`} className="how_gallery-img how_gallery-img--03" src="/img/made_03.jpg" alt="" loading="lazy" aria-hidden={i !== 1 || undefined} />,
+              <img key={`d-${i}`} className="how_gallery-img how_gallery-img--04" src="/img/made_04.jpg" alt="" loading="lazy" aria-hidden={i !== 1 || undefined} />,
               /* eslint-enable @next/next/no-img-element */
             ])}
           </div>
@@ -65,14 +71,6 @@ export default function HowWeWork() {
             </p>
             <p className="how_description-footnote">*запрещенные в РФ организации</p>
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/icons/arrows-down.svg"
-            alt=""
-            className="how_description-arrows"
-            width={53}
-            height={34}
-          />
         </div>
 
         <div className="how_cards">

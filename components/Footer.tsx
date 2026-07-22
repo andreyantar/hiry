@@ -7,9 +7,19 @@ export default function Footer() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icons/avatar.png" alt="Егор Грачев" />
           </div>
-          <div className="footer_avatar-caption">
-            <p>Егор Грачев</p>
-            <p className="footer_avatar-caption-role">партнер</p>
+          <div className="footer_avatar-info">
+            <div className="footer_avatar-caption">
+              <p>Егор Грачев</p>
+              <p className="footer_avatar-caption-role">партнер</p>
+            </div>
+            <a
+              href="https://t.me/egorgrch"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer_btn footer_btn--primary"
+            >
+              Написать Егору
+            </a>
           </div>
         </div>
 
@@ -20,10 +30,20 @@ export default function Footer() {
           </h2>
 
           <div className="footer_ctas">
-            <a href="#" className="footer_btn footer_btn--primary">
+            <a
+              href="https://forms.gle/7GabvomyNwwX6HUC8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer_btn footer_btn--primary"
+            >
               Нужны дизайнеры
             </a>
-            <a href="#" className="footer_btn footer_btn--ghost">
+            <a
+              href="https://forms.gle/85QEMHzQuMoBb6j7A"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer_btn footer_btn--ghost"
+            >
               Дизайнер, ищу работу
             </a>
           </div>
@@ -34,8 +54,9 @@ export default function Footer() {
         <div className="footer_divider" aria-hidden />
         <div className="footer_legal">
           <span>Хайри 2026 – ИП Александров Олег Валерьевич</span>
-          <a href="/offer">Оферта и прочая хуйня</a>
-          <a href="/privacy">Политика сфиктериальности</a>
+          <a href="/privacy">Политика обработки персональных данных</a>
+          <a href="/consent">Согласие на обработку перс. данных</a>
+          <a href="/cookies">Политика использования куки-файлов</a>
         </div>
       </div>
     </footer>

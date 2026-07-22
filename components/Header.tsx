@@ -84,48 +84,60 @@ export default function Header() {
   }, [isCompact]);
 
   return (
-    <header className="site-header">
-      <div className="site-header_inner">
-        <a
-          ref={logoRef}
-          href="/"
-          aria-label="Хайри — на главную"
-          className="site-header_logo"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/icons/Hiry_Logo.svg"
-            alt="Хайри"
-            width={LOGO_BIG_W}
-            height={LOGO_BIG_H}
-          />
-        </a>
-        <nav className="site-header_nav" aria-label="Основная навигация">
-          <a className="site-header_link" href="/#cases">Кейсы</a>
-          <a className="site-header_link" href="/#how">Этапы работы</a>
-          <a className="site-header_link" href="/#contacts">Контакты</a>
+    <>
+      <header className="site-header">
+        <div className="site-header_inner">
           <a
-            className="site-header_link site-header_tg"
-            href="https://t.me/@hiry_agency"
+            ref={logoRef}
+            href="/"
+            aria-label="Хайри — на главную"
+            className="site-header_logo"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/icons/Hiry_Logo.svg"
+              alt="Хайри"
+              width={LOGO_BIG_W}
+              height={LOGO_BIG_H}
+            />
+          </a>
+          <a
+            className="site-header_tg-mobile"
+            href="https://t.me/hiry_agency"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Telegram-канал Хайри"
           >
-            <span>Мы в</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/img/Telegram_logo.png" alt="" className="site-header_tg-icon" />
           </a>
-        </nav>
+        </div>
+      </header>
+      {/* Root-level so mix-blend-mode blends against the page, not the fixed header */}
+      <nav className="site-header_nav" aria-label="Основная навигация">
+        <a className="site-header_link" href="/#cases">Кейсы</a>
+        <a className="site-header_link" href="/#how">Этапы работы</a>
+        <a className="site-header_link" href="/#contacts">Контакты</a>
         <a
-          className="site-header_tg-mobile"
-          href="https://t.me/@hiry_agency"
+          className="site-header_link site-header_tg"
+          href="https://t.me/hiry_agency"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Telegram-канал Хайри"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/img/Telegram_logo.png" alt="" className="site-header_tg-icon" />
+          Мы в
         </a>
-      </div>
-    </header>
+      </nav>
+      {/* Telegram icon kept separate from the blended nav so it stays its brand color */}
+      <a
+        className="site-header_tg-fixed"
+        href="https://t.me/hiry_agency"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Telegram-канал Хайри"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/img/Telegram_logo.png" alt="" className="site-header_tg-icon" />
+      </a>
+    </>
   );
 }

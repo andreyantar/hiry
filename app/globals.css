@@ -92,12 +92,19 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 }
 .site-header_logo img { width: 100%; height: 100%; }
 
+/* Nav lives at root level (sibling of .site-header), fixed-positioned. mix-blend-mode
+   on the nav itself blends per-pixel against the page behind it: white text reads
+   white over dark sections, black over light ones — and stays correct even when a
+   section boundary crosses the nav. The Telegram icon is a currentColor SVG, so it
+   inverts together with the text. */
 .site-header_nav { display: none; }
 @media (min-width: 768px) {
   .site-header_nav {
-    position: absolute;
-    right: 60px;
+    position: fixed;
+    /* right edge leaves room for the standalone Telegram icon (icon right + width + gap) */
+    right: 102px;
     top: 22px;
+    z-index: 100;
     height: 28px;
     padding-bottom: 10px;
     display: flex;
@@ -112,11 +119,13 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
     color: var(--white);
     white-space: nowrap;
     text-transform: uppercase;
+    mix-blend-mode: difference;
   }
 }
 @media (min-width: 1280px) {
   .site-header_nav {
-    right: calc(80 * var(--u));
+    /* keep aligned to the centered 1920px container on ultra-wide viewports */
+    right: max(calc(108 * var(--u)), calc((100vw - 1920px) / 2 + 108 * var(--u)));
     top: calc(22 * var(--u));
     height: calc(28 * var(--u));
     padding-bottom: calc(10 * var(--u));
@@ -129,6 +138,32 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 .site-header_link:focus-visible {
   color: var(--limon);
   outline: none;
+}
+
+/* Standalone Telegram icon — outside the blended nav, keeps its brand color.
+   Mirrors the nav's vertical metrics (height + padding-bottom) so the icon
+   centers on the same line as the nav text. */
+.site-header_tg-fixed { display: none; }
+@media (min-width: 768px) {
+  .site-header_tg-fixed {
+    position: fixed;
+    right: 60px;
+    top: 22px;
+    height: 28px;
+    padding-bottom: 10px;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+  }
+}
+@media (min-width: 1280px) {
+  .site-header_tg-fixed {
+    right: max(calc(80 * var(--u)), calc((100vw - 1920px) / 2 + 80 * var(--u)));
+    top: calc(22 * var(--u));
+    height: calc(28 * var(--u));
+    padding-bottom: calc(10 * var(--u));
+  }
 }
 .site-header_tg {
   display: inline-flex;
@@ -912,6 +947,198 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   color: var(--bg);
 }
 
+/* ====== Cases — static grid (figma 2056:176; mobile/tablet адаптация по project standards) ====== */
+.cases_grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+}
+@media (min-width: 768px) { .cases_grid { gap: 64px; } }
+@media (min-width: 1280px) { .cases_grid { gap: calc(76 * var(--u)); } }
+
+.cases_grid-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  width: 100%;
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+  /* Tablet: row-обёртки прозрачные, все 6 карточек в одной 2-col сетке (3×2) */
+  .cases_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 24px;
+  }
+  .cases_grid-row { display: contents; }
+}
+@media (min-width: 1280px) {
+  .cases_grid-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .cases_grid-row--top { align-items: center; }
+  .cases_grid-row--bottom { align-items: flex-start; }
+}
+
+.cases_card-static {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+@media (min-width: 768px) { .cases_card-static { gap: 24px; } }
+@media (min-width: 1280px) {
+  .cases_card-static {
+    gap: calc(28 * var(--u));
+    width: calc(300 * var(--u));
+  }
+  .cases_card-static--samolet { width: calc(332 * var(--u)); }
+}
+
+/* Logo wrappers — figma container sizes scaled by --logo-u (uniform 0.787 down
+   from figma to fit; preserves per-logo optical compensation). img uses
+   object-fit to keep real aspect ratio. */
+.cases_static-logo {
+  --logo-u: calc(var(--u) * 0.787);
+  position: relative;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.cases_static-logo-inner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+}
+/* Row 1 — figma wrapper h 70, width per brand. Img uses contain to keep
+   real aspect (figma frame stretches them; we preserve natural ratios) */
+.cases_static-logo--vkusvill,
+.cases_static-logo--samolet,
+.cases_static-logo--winline {
+  height: calc(70 * var(--logo-u));
+}
+.cases_static-logo--vkusvill { width: calc(300 * var(--logo-u)); }
+.cases_static-logo--samolet { width: calc(288 * var(--logo-u)); }
+.cases_static-logo--winline { width: calc(288 * var(--logo-u)); }
+.cases_static-logo--vkusvill img,
+.cases_static-logo--samolet img,
+.cases_static-logo--winline img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Row 2 — wrapper h 94 */
+.cases_static-logo--wb {
+  width: calc(129 * var(--logo-u));
+  height: calc(94 * var(--logo-u));
+  overflow: hidden;
+}
+.cases_static-logo--wb .cases_static-logo-inner {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(129 * var(--logo-u));
+  height: calc(67 * var(--logo-u));
+}
+.cases_static-logo--wb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.cases_static-logo--vk-round {
+  width: calc(94 * var(--logo-u));
+  height: calc(94 * var(--logo-u));
+  border-radius: calc(320 * var(--logo-u));
+  overflow: hidden;
+}
+.cases_static-logo--vk-round img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cases_static-logo--vk-box {
+  width: calc(85 * var(--logo-u));
+  height: calc(94 * var(--logo-u));
+  overflow: hidden;
+}
+.cases_static-logo--vk-box .cases_static-logo-inner {
+  width: calc(85 * var(--logo-u));
+  height: calc(86.809 * var(--logo-u));
+  top: calc(50% + 0.4px);
+}
+.cases_static-logo--vk-box img {
+  width: calc(85 * var(--logo-u));
+  height: calc(86.809 * var(--logo-u));
+  object-fit: contain;
+}
+
+/* Card body text — ALS Hauss Regular #0d0b14; mobile/tablet по project standards */
+.cases_static-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--font-als-hauss), sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.075;
+  color: var(--bg);
+  word-break: break-word;
+}
+@media (min-width: 768px) { .cases_static-text { font-size: 24px; } }
+@media (min-width: 1280px) {
+  .cases_static-text {
+    font-size: calc(27.364 * var(--u));
+    line-height: calc(29.416 * var(--u));
+  }
+}
+.cases_static-text p { margin: 0; }
+
+/* Read button — figma 121×53 на desktop, mobile/tablet по project standards */
+.cases_static-link {
+  display: inline-block;
+  background: var(--limon);
+  width: 100px;
+  height: 44px;
+  padding: 12px 0 0 14px;
+  box-sizing: border-box;
+  font-family: var(--font-als-hauss), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  color: var(--bg);
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+.cases_static-link span { display: inline-block; }
+.cases_static-link:hover { opacity: 0.85; }
+@media (min-width: 768px) {
+  .cases_static-link {
+    width: 110px;
+    height: 48px;
+    padding: 13px 0 0 15px;
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
+@media (min-width: 1280px) {
+  .cases_static-link {
+    width: calc(121 * var(--u));
+    height: calc(53 * var(--u));
+    padding: calc(15 * var(--u)) 0 0 calc(16 * var(--u));
+    font-size: calc(27.364 * var(--u));
+    line-height: calc(29.416 * var(--u));
+  }
+}
+
 /* ====== Section: How we do it ====== */
 .section_how {
   width: 100%;
@@ -940,31 +1167,47 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 64px;
   margin-bottom: 0;
   position: relative;
   z-index: 1;
 }
+@media (min-width: 768px) { .how_top { gap: 96px; } }
 @media (min-width: 1280px) {
   .how_top {
-    gap: calc(37 * var(--u));
+    gap: calc(80 * var(--u));
     margin-bottom: calc(-41 * var(--u));
   }
 }
 
+.how_title-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.how_title-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.how_title-rotor {
+  display: inline-block;
+  transform: rotate(-9deg);
+}
 .how_title {
   font-family: var(--font-gt-america), sans-serif;
   font-style: italic;
   font-weight: 700;
-  font-size: 44px;
-  line-height: 0.85;
-  letter-spacing: -0.9px;
-  color: var(--limon);
+  font-size: 56px;
+  line-height: 0.79;
+  letter-spacing: -1.1px;
+  color: var(--white);
   text-align: center;
-  width: 100%;
-  max-width: 320px;
+  width: 320px;
+  max-width: 100%;
 }
-@media (min-width: 768px) { .how_title { font-size: 64px; max-width: 460px; } }
 @media (min-width: 1280px) {
   .how_title {
     width: calc(394 * var(--u));
@@ -1119,18 +1362,6 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   }
 }
 
-.how_description-arrows {
-  width: 40px;
-  height: auto;
-  flex-shrink: 0;
-}
-@media (min-width: 1280px) {
-  .how_description-arrows {
-    width: calc(52.694 * var(--u));
-    height: calc(34 * var(--u));
-  }
-}
-
 .how_cards {
   display: flex;
   flex-direction: column;
@@ -1272,20 +1503,37 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 }
 @media (min-width: 1280px) {
   .footer_main {
-    gap: calc(24 * var(--u));
+    gap: calc(72 * var(--u));
     padding-left: calc(150 * var(--u));
   }
 }
 
 .footer_avatar-block {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row; /* mobile: photo left, text column right */
+  align-items: center;
   flex-shrink: 0;
   gap: 16px;
 }
+@media (min-width: 768px) {
+  .footer_avatar-block {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 @media (min-width: 1280px) {
   .footer_avatar-block { gap: calc(19 * var(--u)); }
+}
+
+/* Name + role + button grouped so they stack as one column beside the photo */
+.footer_avatar-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+@media (min-width: 1280px) {
+  .footer_avatar-info { gap: calc(19 * var(--u)); }
 }
 
 .footer_avatar {
@@ -1323,6 +1571,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 }
 .footer_avatar-caption-role {
   color: rgba(8, 6, 7, 0.5);
+  margin-bottom: -0.5rem;
 }
 
 .footer_content {
@@ -1363,12 +1612,14 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   flex-direction: column;
   gap: 12px;
   align-items: stretch;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .footer_ctas {
     flex-direction: row;
     gap: 24px;
     align-items: center;
+    width: auto;
   }
 }
 @media (min-width: 1280px) {
@@ -1392,12 +1643,37 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 .footer_btn:hover { opacity: 0.85; }
 
 .footer_btn--primary {
-  background: var(--bg);
+  background: #000;
   color: var(--white);
 }
 .footer_btn--ghost {
   background: transparent;
   color: var(--bg);
+}
+
+/* Text link with underline (matches design) instead of a filled button */
+.footer_avatar-block .footer_btn--primary {
+  display: inline-block;
+  align-self: flex-start;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0 0 2px 0;
+  background: transparent;
+  color: var(--bg);
+  font-size: 16px;
+  line-height: 1.1;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--bg);
+  border-radius: 0;
+}
+@media (min-width: 1280px) {
+  .footer_avatar-block .footer_btn--primary {
+    /* responsive: ≈20px at ~1497px viewport, scales with --u */
+    font-size: calc(17.1 * var(--u));
+    border-bottom-width: calc(2 * var(--u));
+  }
 }
 
 @media (min-width: 1280px) {
@@ -1446,7 +1722,7 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
 }
 @media (min-width: 1280px) {
   .footer_legal {
-    font-size: calc(13 * var(--u));
+    font-size: calc(12 * var(--u));
     gap: calc(20 * var(--u));
   }
 }
@@ -1531,6 +1807,78 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   flex-direction: column;
   gap: 8px;
 }
+
+.legal-page_section ol {
+  list-style: decimal;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.legal-page_section ol li { padding-left: 4px; }
+
+/* Sub-list with "1) 2) 3)" markers */
+.legal-page_sublist {
+  list-style: none;
+  counter-reset: subitem;
+  padding-left: 20px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.legal-page_sublist li {
+  counter-increment: subitem;
+  position: relative;
+  padding-left: 0;
+}
+.legal-page_sublist li::before {
+  content: counter(subitem) ") ";
+  position: absolute;
+  left: -20px;
+}
+
+/* Plain (no-bullet) list — markers live in the text, e.g. "(а) …" */
+.legal-page_plainlist {
+  list-style: none;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Tables inside legal pages */
+.legal-page_table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 4px 0;
+}
+.legal-page_table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+.legal-page_table th,
+.legal-page_table td {
+  border: 1px solid var(--gray);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+.legal-page_table th {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+  font-weight: 500;
+}
+.legal-page_table ol {
+  list-style: decimal;
+  padding-left: 18px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.legal-page_table ol li { padding-left: 2px; }
 
 .legal-page_section a {
   color: var(--limon);

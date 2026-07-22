@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://hiry.agency";
+import { SITE_URL } from "@/lib/site";
 const SITE_NAME = "Хайри";
 const TITLE = "Хайри — закрываем дизайнерские вакансии за 2–4 недели";
 const DESCRIPTION =
@@ -64,13 +63,13 @@ export const metadata: Metadata = {
     url: "/",
     title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: "/img/og.webp", width: 1200, height: 630, alt: SITE_NAME }],
+    images: [{ url: "/img/og.png", width: 1200, height: 630, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/img/og.webp"],
+    images: ["/img/og.png"],
   },
   robots: {
     index: true,
