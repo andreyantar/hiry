@@ -1,0 +1,131 @@
+{
+  "cli_version": "0.6.2",
+  "checkpoint_id": "f10c0c5dfc18",
+  "session_id": "cb61e78f-a13d-4dd4-ab2e-893ba230d81a",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-22T10:10:06.71429Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "app/consent/page.tsx",
+    "app/cookies/page.tsx",
+    "app/globals.css",
+    "app/layout.tsx",
+    "app/offer/page.tsx",
+    "app/page.tsx",
+    "app/privacy/page.tsx",
+    "app/robots.ts",
+    "app/sitemap.ts",
+    "components/Cases.tsx",
+    "components/CasesStatic.tsx",
+    "components/CasesSwiper.tsx",
+    "components/Footer.tsx",
+    "components/Header.tsx",
+    "components/HowWeWork.tsx",
+    "lib/site.ts",
+    "lib/telegram.ts",
+    "next.config.ts",
+    "package-lock.json",
+    "package.json",
+    "public/icons/Vkusvill_textlogo_2021.svg 8.png",
+    "public/icons/Wildberries_2023_Pink.svg 9.png",
+    "public/icons/arrows-down.svg",
+    "public/icons/favicon.png",
+    "public/icons/figma-cases/samolet.png",
+    "public/icons/figma-cases/vk_avatar.png",
+    "public/icons/figma-cases/vk_box.svg",
+    "public/icons/figma-cases/vkusvill.png",
+    "public/icons/figma-cases/wb.png",
+    "public/icons/figma-cases/winline.png",
+    "public/icons/lavka.png",
+    "public/icons/lavka_heart.png",
+    "public/icons/lavka_text.svg",
+    "public/icons/made_01.jpg",
+    "public/icons/made_02.jpg",
+    "public/icons/made_03.jpg",
+    "public/icons/made_04.jpg",
+    "public/icons/samolet_v2.png",
+    "public/icons/tg_01.png",
+    "public/icons/tg_02.png",
+    "public/icons/tg_03.png",
+    "public/icons/vk.png",
+    "public/icons/vkusvill.png",
+    "public/icons/vkusvill_v2.png",
+    "public/icons/wb_pink_10.png",
+    "public/icons/wb_pink_9.png",
+    "public/icons/wildberries.png",
+    "public/icons/winline_logo-main_2-scaled 9.png",
+    "public/icons/winline_v2.png",
+    "public/icons/x5.png",
+    "public/icons/zvuk_v2.png"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "6122d2c4957c",
+  "token_usage": {
+    "input_tokens": 299,
+    "cache_creation_tokens": 136066,
+    "cache_read_tokens": 2867858,
+    "output_tokens": 36025,
+    "api_call_count": 35
+  },
+  "session_metrics": {
+    "turn_count": 4
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-22T10:10:06.704388Z",
+    "agent_lines": 1256,
+    "agent_removed": 538,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 1256,
+    "total_lines_changed": 1794,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 191,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/agents/entire-search.md": 25,
+        ".claude/settings.json": 84,
+        ".claude/settings.local.json": 82
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 82,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1365,
+      "agent_lines_removed": 538,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 82
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 82,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1365,
+      "agent_lines_removed": 538,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 82
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 82,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1365,
+      "agent_lines_removed": 538,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 82
+      }
+    }
+  ]
+}
